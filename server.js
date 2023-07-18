@@ -4,11 +4,15 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/develop", express.static(__dirname + "/develop"));
+app.use(express.static("public"));
 
-require("./routes/")(app);
-require("./routes/routeAPI.js")(app);
+const htmlRoutes = require("./htmlRoutes");
+// ...
+
+htmlRoutes(app);
+// ...
 
 app.listen(PORT, () => {
   console.log(`App listening on PORT ${PORT}`);
 });
+
